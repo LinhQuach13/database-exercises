@@ -1,7 +1,7 @@
-# Use the albums_db database.
+# Q2 Use the albums_db database.
 USE albums_db;
 
-# Explore the structure of the albums table.
+# Q3 Explore the structure of the albums table.
 # a. How many rows are in the albums table?
 # Answer: 31 rows.
 /* Explanation: I used select function and from function to pull all data from albums. 
@@ -40,7 +40,7 @@ SELECT release_date
 FROM albums;
 
 
-# Write queries to find the following information:
+# Q4: Write queries to find the following information:
 
 # a. The name of all albums by Pink Floyd
 # Answer: The Dark Side of the Moon and The Wall.
