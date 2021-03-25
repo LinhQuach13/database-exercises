@@ -65,7 +65,7 @@ under the release_date column.
 
 SELECT *
 FROM albums
-WHERE name = "Sgt. Pepper's Lonely Hearts Club Band";
+WHERE NAME = "Sgt. Pepper's Lonely Hearts Club Band";
 
 
 
@@ -78,7 +78,7 @@ you will see the output at the bottom has the names of the albums under name col
 
 SELECT *
 FROM albums
-WHERE name = "Nevermind";
+WHERE NAME = "Nevermind";
 
 # d. Which albums were released in the 1990s
 # Answer: Dangerous, The Immaculate Collection, Metallica, and Nevermind
@@ -89,7 +89,7 @@ you will see the output at the bottom with the album names under name column.
 
 SELECT *
 FROM albums
-WHERE release_date BETWEEN 1990 and 1991;
+WHERE release_date BETWEEN 1990 AND 1991;
 
 
 # e. Which albums had less than 20 million certified sales
@@ -106,9 +106,8 @@ WHERE sales > 20;
 
 # f. All the albums with a genre of "Rock". Why do these query results not include albums with 
 # a genre of "Hard rock" or "Progressive rock"?
-# Answer & Explanation: Hard rock and progressive rock are not included because rock is the exact string we searched for. 
-Then I used the where function to filter genre by name rock. Hard rock and progressive rock is not included
-because it filters by the literal string name rock.
+/* Answer & Explanation: Hard rock AND progressive rock are NOT included because rock IS the exact STRING we searched for. 
+Then I used the WHERE function TO filter genre BY NAME rock. Hard rock AND progressive rock is not included because it filters by the literal STRING NAME rock.*/
 
 SELECT *
 FROM albums
