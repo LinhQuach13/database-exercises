@@ -107,7 +107,7 @@ WHERE sales > 20;
 # f. All the albums with a genre of "Rock". Why do these query results not include albums with 
 # a genre of "Hard rock" or "Progressive rock"?
 /* Answer & Explanation: Hard rock AND progressive rock are NOT included because rock IS the exact STRING we searched for. 
-Then I used the WHERE function TO filter genre BY NAME rock. Hard rock AND progressive rock is not included because it filters by the literal STRING NAME rock.*/
+Then I used the WHERE function TO filter genre BY NAME rock. Hard rock AND progressive rock is not included because it filters by the exact STRING NAME rock.*/
 
 SELECT *
 FROM albums
