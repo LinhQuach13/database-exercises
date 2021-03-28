@@ -1,3 +1,5 @@
+###################WHERE Clause Examples####################
+
 -- Use the albums database.
 USE albums_db;
 
