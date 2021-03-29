@@ -51,7 +51,8 @@ ORDER BY COUNT(last_name) DESC;
 # Answer: 6 rows.
 
 SELECT 
-	first_name, gender,
+	first_name, 
+	gender,
 	COUNT(gender) AS "Gender_Count"
 FROM employees
 WHERE first_name IN ('Irena', 'Vidya', 'Maya')
