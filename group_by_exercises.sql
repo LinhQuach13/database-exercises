@@ -27,10 +27,11 @@ GROUP BY last_name, first_name;
 
 -- 5. WRITE a QUERY TO find the UNIQUE LAST NAMES WITH a 'q' but NOT 'qu'. Include those NAMES IN a COMMENT IN your SQL code.
 # Answer: Chleq, Lindqvist, and Qiwen.
-SELECT DISTINCT last_name
+SELECT last_name
 FROM employees
 WHERE last_name LIKE '%q%' 
-	AND last_name NOT LIKE '%qu%';
+	AND last_name NOT LIKE '%qu%'
+GROUP BY last_name;
 
 
 
