@@ -38,7 +38,7 @@ WHERE last_name LIKE '%q%'
 # Answer: 3 rows, Lindqvist = 190, Chleq = 189, and Qiwen = 168.
 SELECT 
 	last_name,
-	COUNT(last_name) AS "Count by Last Name"
+	COUNT(last_name) AS "count_by_last_name"
 FROM employees
 WHERE last_name LIKE '%q%' 
 	AND last_name NOT LIKE '%qu%'
@@ -61,10 +61,8 @@ ORDER BY gender_count;
 
 -- 8. USING your QUERY that generates a username FOR ALL of the employees, generate a count employees FOR EACH UNIQUE username. Are there ANY DUPLICATE usernames? BONUS: How many DUPLICATE usernames are there?
 # Answer: Yes there are duplicates and you will see the amount of duplicates when you run the code below.
-SELECT
-LOWER(
-CONCAT(
-	SUBSTR(first_name, 1, 1), SUBSTR(last_name, 1, 4), '_', SUBSTR(birth_date, 6, 2),  SUBSTR(birth_date, 3, 2))) AS username, 
+SELECT CONCAT(
+	SUBSTR(first_name, 1, 1), SUBSTR(last_name, 1, 4), '_', SUBSTR(birth_date, 6, 2), SUBSTR(birth_date, 3, 2)) AS username, 
 	COUNT(*)
 FROM employees
 GROUP BY username
