@@ -14,8 +14,10 @@ FROM users
 JOIN roles;
 
 
+
 -- 2. Use join, left join, and right join to combine results from the users 
--- and roles tables as we did in the lesson. Before you run each query, guess the expected number of results.
+-- and roles tables as we did in the lesson. 
+-- Before you run each query, guess the expected number of results.
 #Answer: My guess is they will all run 24 rows.
 SELECT *
 FROM users
@@ -30,7 +32,11 @@ SELECT *
 FROM users
 RIGHT JOIN roles ON users.role_id = roles.id;
 
--- 3. Although not explicitly covered in the lesson, aggregate functions like count can be used with join queries. Use count and the appropriate join type to get a list of roles along with the number of users that has the role. Hint: You will also need to use group by in the query.
+
+-- 3. Although not explicitly covered in the lesson, aggregate functions like 
+-- count can be used with join queries. Use count and the appropriate join type 
+-- to get a list of roles along with the number of users that has the role. 
+-- Hint: You will also need to use group by in the query.
 
 SELECT roles.name, count(users.role_id) AS role_count
 FROM roles
@@ -44,7 +50,9 @@ GROUP BY roles.name;
 -- 1. Use the employees database.
 USE employees;
 
--- 2. Using the example in the Associative Table Joins section as a guide, write a query that shows each department along with the name of the current manager for that department.
+
+-- 2. Using the example in the Associative Table Joins section as a guide, 
+-- write a query that shows each department along with the name of the current manager for that department.
 
 select dept_name as "Department Name", concat(first_name, " ", last_name) as "Department Manager"
 from departments
@@ -52,6 +60,7 @@ join dept_manager on departments.dept_no = dept_manager.dept_no
 join employees on employees.emp_no= dept_manager.emp_no
 WHERE dept_manager.to_date > curdate()
 ORDER BY dept_name ASC;
+
 
 -- 3. Find the name of all departments currently managed by women.
 select dept_name as "Department Name", concat(first_name, " ", last_name) as "Department Manager"
@@ -61,10 +70,8 @@ join employees on employees.emp_no= dept_manager.emp_no
 WHERE dept_manager.to_date > curdate() AND gender NOT LIKE 'm%m'
 ORDER BY dept_name ASC;
 
+
 -- 4. Find the current titles of employees currently working in the Customer Service department.
-/*select *
-FROM titles
-join*/
 
 select titles.title AS 'Title', COUNT(titles.title) AS 'Count'
 FROM departments 
@@ -75,9 +82,8 @@ AND titles.to_date LIKE '9999%'
 AND dept_emp.to_date LIKE '9999%'
 GROUP BY Title;
 
+
 -- 5. Find the current salary of all current managers.
-
-
 select dept_name as "Department Name", concat(first_name, " ", last_name) as "Department Manager", salary AS 'Salary'
 from departments
 Join dept_manager using(dept_no)
@@ -86,6 +92,8 @@ join salaries using(emp_no)
 WHERE dept_manager.to_date > curdate()
 AND salaries.to_date > curdate()
 ORDER BY dept_name ASC;
+
+
 
 -- 6. Find the number of current employees in each department.
 select 
@@ -99,6 +107,7 @@ GROUP By dept_no;
 
 
 -- 7. Which department has the highest average salary? Hint: Use current not historic information.
+# answer: Sales
 select dept_name, AVG(salary) AS 'average_salary'
 from departments
 join dept_emp using(dept_no)
@@ -111,6 +120,7 @@ LIMIT 1;
 
 
 -- 8. Who is the highest paid employee in the Marketing department?
+#answer: Akemi Warwick
 select employees.first_name, employees.last_name
 from departments
 join dept_emp using(dept_no)
@@ -123,6 +133,7 @@ LIMIT 1;
 
 
 -- 9. Which current department manager has the highest salary?
+# Answer: Vishwani Minakawa, $106,491, Marketing
 select first_name, last_name, salary, dept_name
 from departments
 Join dept_manager using(dept_no)
