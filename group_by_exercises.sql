@@ -3,9 +3,8 @@ USE employees;
 
 -- 2. IN your script, USE DISTINCT TO find the UNIQUE titles IN the titles table. How many UNIQUE titles have there ever been? Answer that IN a COMMENT IN your SQL file.
 # Answer: 7 unique titles.
-SELECT title
-FROM titles
-GROUP BY title;
+SELECT DISTINCT title
+FROM titles;
 
 
 -- 3. WRITE a QUERY TO TO find a LIST of ALL UNIQUE LAST NAMES of ALL employees that START AND END WITH 'E' USING GROUP BY.
