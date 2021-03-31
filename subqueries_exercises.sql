@@ -24,19 +24,6 @@ AND
 titles.to_date > NOW();
 
 
--- another way to do #2
-SELECT DISTINCT title
-FROM titles
-WHERE to_date > curdate()
-AND emp_no IN (
-	SELECT emp_no
-	FROM employees
-	WHERE first_name = 'Aamod'
-	);
-
-
-
-
 
 -- 3. How many people in the employees table are no longer working for the company? Give the answer in a comment in your code.
 # Answer: 188132 employees.
