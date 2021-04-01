@@ -26,16 +26,17 @@ titles.to_date > NOW();
 
 
 -- 3. How many people in the employees table are no longer working for the company? Give the answer in a comment in your code.
-# Answer: 188132 employees.
-select *
+# Answer: 59,900 employees.
+
+select count(*)
 from employees
-WHERE emp_no IN(
-select emp_no
-from titles
-WHERE to_date NOT LIKE '9999%'
+WHERE emp_no NOT IN (
+SELECT emp_no
+FROM salaries
+WHERE to_date = '9999-01-01'
 );
 
-
+					
 
 
 -- 4. Find all the current department managers that are female. List their names in a comment in your code.
@@ -50,46 +51,56 @@ WHERE to_date > NOW()
 AND
 gender LIKE '%f%';
 
-select *
-from dept_manager
-WHERE emp_no IN (select emp_no
-from employees
-WHERE gender LIKE '%f%')
-AND
-to_date > NOW();
-
 
 
 -- 5. Find all the employees who currently have a higher salary than the companies overall, historical average salary.
-# Answer: 2844037 rows.
+# Answer: 154,543 rows.
 
-select emp_no, salary
-from salaries
-WHERE salary > 38864
-AND emp_no IN(
-select emp_no
-FROM employees
-)
-ORDER BY salary DESC;
-
+SELECT 
+	employees.emp_no,
+	first_name,
+	last_name,
+	salary
+FROM employees 
+JOIN salaries ON employees.emp_no = salaries.emp_no
+	AND to_date > NOW()
+WHERE salary > (
+				SELECT AVG(salary)
+				FROM salaries
+				);
 
 -- 6. How many current salaries are within 1 standard deviation of the current highest salary? 
 -- (Hint: you can use a built in function to calculate the standard deviation.) What percentage of all salaries is this?
-#Answer: 78 salaries are within 1 std deviation of the current highest salary and the percentage of salaries is less than 1%.
+#Answer: 83 salaries are within 1 std deviation of the current highest salary and the percentage of salaries is 0.0346%.
+
+-- Current salaries within 1 std deviation of the current highest salary
 SELECT COUNT(salary)
 FROM salaries
 WHERE to_date>curdate()
-AND salary >(
+AND salary >=(
 Select (max(salary)-std(salary))
 FROM salaries
+WHERE to_date > CURDATE()
 );
 
 
+-- Percentage of all salaries
+SELECT
+(SELECT
+	COUNT(salary)
+FROM salaries
+WHERE to_date > CURDATE()
+	AND salary >= (
+					SELECT
+					MAX(salary) - STDDEV(salary)
+					FROM salaries
+					WHERE to_date > CURDATE()
+					))
+/
+(SELECT
+	COUNT(salary)
+FROM salaries
+WHERE to_date > CURDATE()) * 100 AS percent_of_salaries;
 
-BONUS
 
--- 1. Find all the department names that currently have female managers.
 
--- 2. Find the first and last name of the employee with the highest salary.
-
--- 3. Find the department name that the employee with the highest salary works in.
