@@ -91,11 +91,11 @@ SELECT
 FROM salaries
 WHERE to_date > CURDATE()
 	AND salary >= (
-					SELECT
-					MAX(salary) - STDDEV(salary)
-					FROM salaries
-					WHERE to_date > CURDATE()
-					))
+SELECT
+MAX(salary) - STDDEV(salary)
+FROM salaries
+WHERE to_date > CURDATE()
+))
 /
 (SELECT
 	COUNT(salary)
