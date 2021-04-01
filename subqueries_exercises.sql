@@ -12,6 +12,9 @@ WHERE emp_no LIKE '101010'
 );
 
 
+
+
+
 -- 2. Find all the titles ever held by all current employees with the first name Aamod.
 select DISTINCT title
 from titles
@@ -20,8 +23,11 @@ select emp_no
 from employees
 WHERE first_name = "Aamod"
 )
-	AND
+AND
 titles.to_date > NOW();
+
+
+
 
 
 
@@ -40,7 +46,7 @@ WHERE to_date = '9999-01-01'
 
 
 -- 4. Find all the current department managers that are female. List their names in a comment in your code.
-# Answer: Isamu Legleitner, Karsten Sigstam, Leon DasSarma, Hilary Kambil.
+# Answer: Isamu Legleitner, Karsten Sigstam, Leon DasSarma, and Hilary Kambil.
 select *
 FROM employees
 WHERE emp_no IN(
@@ -71,7 +77,7 @@ FROM salaries
 
 -- 6. How many current salaries are within 1 standard deviation of the current highest salary? 
 -- (Hint: you can use a built in function to calculate the standard deviation.) What percentage of all salaries is this?
-#Answer: 83 salaries are within 1 std deviation of the current highest salary and the percentage of salaries is 0.0346%.
+#Answer: 83 salaries are within 1 std deviation of the current highest salary and the percentage of salaries is 0.03%.
 
 -- Current salaries within 1 std deviation of the current highest salary
 SELECT COUNT(salary)
